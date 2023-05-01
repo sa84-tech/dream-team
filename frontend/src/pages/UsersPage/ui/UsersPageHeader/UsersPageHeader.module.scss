@@ -1,0 +1,18 @@
+.UsersPageHeader {
+    color: white;
+    max-width: 846px;
+
+    h1,
+    p {
+        text-align: center;
+    }
+
+    h1 {
+        font: var(--font-h1);
+    }
+
+    p {
+        margin-top: 16px;
+        font: var(--font-h2);
+    }
+}

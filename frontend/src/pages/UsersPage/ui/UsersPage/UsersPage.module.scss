@@ -1,0 +1,26 @@
+.UsersPage {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.headerContent {
+    color: white;
+    max-width: 846px;
+
+    h1,
+    p {
+        text-align: center;
+    }
+}
+
+.main {
+    padding: 48px 80px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.more {
+    display: flex;
+    justify-content: center;
+}

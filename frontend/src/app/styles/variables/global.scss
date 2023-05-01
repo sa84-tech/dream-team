@@ -1,0 +1,19 @@
+:root {
+    // colors
+    --violet: #512689;
+    --black: #151317;
+    --gray: #808185;
+    --gray_light: #F8F8F8;
+    --red: #FF6161;
+    --white: #fff;
+
+    // sizes
+    --navbar-height: 256px;
+
+    // font
+    --font-family: 'Roboto', sans-serif;
+    --font-regular: 16px / 24px var(--font-family);
+    --font-small: 14px / 22px var(--font-family);
+    --font-h1: 64px / 75px var(--font-family);
+    --font-h2: 20px / 22px var(--font-family);
+}

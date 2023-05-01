@@ -1,0 +1,12 @@
+.UsersList {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: fit-content;
+    justify-content: center;
+    max-width: 1280px;
+
+    .card {
+        height: 305px;
+    }
+}

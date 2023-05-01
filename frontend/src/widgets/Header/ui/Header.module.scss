@@ -1,0 +1,22 @@
+.Header {
+    width: 100%;
+    height: var(--navbar-height);
+    background: var(--violet);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.logoutBtn {
+    position: absolute;
+    top: 32px;
+    right: 80px;
+}
+
+.navBtnWrapper {
+    position: absolute;
+    top: 32px;
+    left: 80px;
+}
+

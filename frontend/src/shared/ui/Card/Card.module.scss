@@ -1,0 +1,17 @@
+.Card {
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.normal {
+    background: var(--violet);
+}
+
+.outlined {
+    border: 1px solid var(--gray_light);
+    box-shadow: 0px 1px 4px 0px rgba(51, 51, 51, 0.15);
+}
+
+.max {
+    width: 100%;
+} 
