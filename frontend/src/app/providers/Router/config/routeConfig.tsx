@@ -4,29 +4,36 @@ import { UserDetailsPage } from '@/pages/UserDetailsPage';
 import { UsersPage } from '@/pages/UsersPage';
 import { RouteProps } from 'react-router-dom';
 
-export enum AppRoutes {
+enum AppRoutes {
     USERS = 'users',
     USERS_DETAILS = 'users_details',
     LOGIN = 'login',
     NOT_FOUND = 'not_found',
 }
 
+export const routePath: Record<AppRoutes, string> = {
+    [AppRoutes.USERS]: '/',
+    [AppRoutes.USERS_DETAILS]: '/users/', //+ :id
+    [AppRoutes.LOGIN]: '/login/',
+    [AppRoutes.NOT_FOUND]: '*',
+};
+
 export const routeConfig: Record<AppRoutes, RouteProps> = {
     [AppRoutes.USERS]: {
-        path: '/',
+        path: routePath.users,
         element: <UsersPage />,
     },
     [AppRoutes.USERS_DETAILS]: {
-        path: `/users/:id`,
+        path: `${routePath.users_details}:id`,
         element: <UserDetailsPage />,
     },
     [AppRoutes.LOGIN]: {
-        path: '/login',
+        path: routePath.login,
         element: <LoginPage />,
     },
     // last
     [AppRoutes.NOT_FOUND]: {
-        path: '*',
+        path: routePath.not_found,
         element: <NotFoundPage />,
     },
 };

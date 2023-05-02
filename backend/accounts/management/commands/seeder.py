@@ -29,15 +29,12 @@ class Command(BaseCommand):
             if data.get('users'):
                 for user in data['users']:
                     try:
-                        if user['is_superuser']:
-                            password = ADM_PASSWD
-                        else:
-                            password = USR_PASSWD
-                        new_user = UserModel.objects.create_user(**user, password=password)
+                        password = ADM_PASSWD if user['is_superuser'] else USR_PASSWD
+                        (new_user, created) = UserModel.objects.update_or_create(**user, password=password)
                         new_user.save()
-                        print(f'** New user created ({new_user.get_full_name()}) **')
-                    except IntegrityError:
-                        print(f'** User {user["email"]} aready exists **')
+                        print(f'** User "{new_user.get_full_name()}" {"created" if created else "updated"} **')
+                    except IntegrityError as e:
+                        print(f'** Error: {e} **')
 
         except IOError as error:
             print('!!!', error)

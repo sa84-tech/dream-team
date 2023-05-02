@@ -18,6 +18,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     avatar = models.CharField(_('avatar'), max_length=255, blank=True)
     role = models.CharField(_('role'), max_length=42, blank=True)
     bio = models.TextField(_('biographical profile'), blank=True)
+    phone = models.CharField(_('phone'), max_length=18, blank=True)
 
     objects = CustomUserManager()
 

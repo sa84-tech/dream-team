@@ -48,7 +48,12 @@ const usersPageSlice = createSlice({
                 state.next = action.payload.next;
                 state.previous = action.payload.previous;
                 state.total = action.payload.count;
-                usersAdapter.setAll(state, action.payload.results);
+                
+                if (action.meta.arg.addMore) {
+                    usersAdapter.addMany(state, action.payload.results);
+                } else {
+                    usersAdapter.setAll(state, action.payload.results);
+                }
             })
             .addCase(fetchUsers.rejected, (state, action) => {
                 state.isLoading = false;

@@ -15,7 +15,6 @@ export const Header = memo((props: HeaderProps) => {
     return (
         <header className={classNames(cls.Header, {}, [className])}>
             <div className={cls.navBtnWrapper}>
-                {/* <Button theme={ButtonTheme.OUTLINE_INVERTED}>Назад</Button> */}
                 {navBtnSlot}
             </div>
             {mainContentSlot}

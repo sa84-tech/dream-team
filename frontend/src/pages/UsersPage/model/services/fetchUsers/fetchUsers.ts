@@ -11,34 +11,33 @@ interface ApiResponse {
     previous: string;
     results: User[];
 }
+interface FetchUsersProps {
+    addMore?: boolean;
+}
 
-export const fetchUsers = createAsyncThunk<
-ApiResponse,
-    void,
-    ThunkConfig<string>
-    >(
-        'usersPage/fetchUsers',
-        async (_, thunkApi) => {
-            const { rejectWithValue, getState } = thunkApi;
+export const fetchUsers = createAsyncThunk<ApiResponse, FetchUsersProps, ThunkConfig<string>>(
+    'usersPage/fetchUsers',
+    async (_, thunkApi) => {
+        const { rejectWithValue, getState } = thunkApi;
 
-            const limit = getUsersPageLimit(getState());
-            const offset = getUsersPageOffset(getState());
+        const limit = getUsersPageLimit(getState());
+        const offset = getUsersPageOffset(getState());
 
-            try {
-                const response = await $api.get<ApiResponse>('/users/', {
-                    params: {
-                        limit: limit,
-                        offset: offset,
-                    },
-                });
+        try {
+            const response = await $api.get<ApiResponse>('/users/', {
+                params: {
+                    limit: limit,
+                    offset: offset,
+                },
+            });
 
-                if (!response.data) {
-                    throw new Error();
-                }
-
-                return response.data;
-            } catch (e) {
-                return rejectWithValue('error');
+            if (!response.data) {
+                throw new Error();
             }
-        },
-    );
+
+            return response.data;
+        } catch (e) {
+            return rejectWithValue('error');
+        }
+    },
+);

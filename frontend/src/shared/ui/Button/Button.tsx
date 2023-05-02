@@ -9,7 +9,6 @@ export enum ButtonVariant {
     OUTLINE_INVERTED = 'outline_inverted',
 }
 
-
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
     variant?: ButtonVariant;
@@ -17,10 +16,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = memo((props: ButtonProps) => {
-    const { className, variant = ButtonVariant.OUTLINE, children } = props;
-	
+    const { className, variant = ButtonVariant.OUTLINE, children, ...otherProps } = props;
+
     return (
-        <button className={classNames(cls.Button, {}, [cls[variant], className])}>
+        <button className={classNames(cls.Button, {}, [cls[variant], className])} {...otherProps}>
             {children}
         </button>
     );

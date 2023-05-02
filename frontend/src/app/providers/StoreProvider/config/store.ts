@@ -2,11 +2,13 @@ import { counterReducer } from '@/entities/Counter';
 import { usersPageReducer } from '@/pages/UsersPage/model/slices/usersPageSlice';
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { StateSchema } from './stateSchema';
+import { userDetailsReducer } from '@/pages/UserDetailsPage/model/slices/userDetailsSlice';
 
 export function createReduxStore(initialState?: StateSchema) {
     const rootReducers: ReducersMapObject<StateSchema> = {
         counter: counterReducer,
         usersPage: usersPageReducer,
+        userDetails: userDetailsReducer,
     };
 
     return configureStore<StateSchema>({
