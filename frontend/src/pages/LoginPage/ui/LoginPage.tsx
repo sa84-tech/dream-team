@@ -1,5 +1,6 @@
-import { memo } from 'react';
+import { LoginForm } from '@/entities/LoginForm';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { memo } from 'react';
 import cls from './LoginPage.module.scss';
 
 interface LoginPageProps {
@@ -8,10 +9,10 @@ interface LoginPageProps {
 
 export const LoginPage = memo((props: LoginPageProps) => {
     const { className } = props;
-	
+
     return (
-        <div className={classNames(cls.LoginPage, {}, [className])}>
-            
-        </div>
+        <main className={classNames(cls.LoginPage, {}, [className])}>
+            <LoginForm />
+        </main>
     );
 });

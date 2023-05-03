@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { $api } from '@/shared/api/api';
-import { getUsersPageLimit, getUsersPageOffset } from '../../selectors/usersPageSelectors';
-import { User } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider/config/stateSchema';
+import { User } from '@/entities/User';
+import { $api } from '@/shared/api/api';
+import { getUsersPageOffset } from '../../selectors/usersPageSelectors';
 
 interface ApiResponse {
     count: number;
@@ -11,22 +11,20 @@ interface ApiResponse {
     previous: string;
     results: User[];
 }
+
 interface FetchUsersProps {
     addMore?: boolean;
 }
 
 export const fetchUsers = createAsyncThunk<ApiResponse, FetchUsersProps, ThunkConfig<string>>(
     'usersPage/fetchUsers',
-    async (_, thunkApi) => {
+    async ({ addMore }, thunkApi) => {
         const { rejectWithValue, getState } = thunkApi;
-
-        const limit = getUsersPageLimit(getState());
-        const offset = getUsersPageOffset(getState());
+        const offset = addMore ? getUsersPageOffset(getState()) : 0;
 
         try {
             const response = await $api.get<ApiResponse>('/users/', {
                 params: {
-                    limit: limit,
                     offset: offset,
                 },
             });

@@ -44,7 +44,7 @@ export const UsersPage = memo((props: UsersPageProps) => {
             <main className={cls.main}>
                 <UsersList isLoading={isLoading} users={users} />
             </main>
-            <div className={cls.more} hidden={!next}>
+            <div className={classNames(cls.more, {[cls.hidden]: !next})}>
                 <Button className={cls.logoutBtn} variant={ButtonVariant.OUTLINE} onClick={onShowMore} disabled={!next}>
                     Показать еще <Arrow />
                 </Button>

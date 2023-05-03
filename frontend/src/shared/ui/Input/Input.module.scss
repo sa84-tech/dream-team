@@ -1,0 +1,32 @@
+.placeholder {
+    margin-top: 16px;
+}
+
+.input {
+    height: 48px;
+    border-radius: 8px;
+    background-color: var(--gray_light);
+    margin-top: 8px;
+    border: none;
+    padding: 12px 16px 12px 8px;
+    color: var(--gray);
+    font-size: var(--text-small);
+    width: 100%;
+
+    &:focus {
+        outline: none;
+        background-color: var(--gray_light_tr);
+        // box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+    }
+}
+
+.errorBorder {
+    border: 1px solid var(--red);
+}
+
+.error {
+    color: var(--red);
+    font: var(--font-small);
+    margin: 0;
+
+}

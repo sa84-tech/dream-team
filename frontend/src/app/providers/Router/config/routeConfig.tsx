@@ -1,5 +1,6 @@
 import { LoginPage } from '@/pages/LoginPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
+import { RegistrationPage } from '@/pages/RegistrationPage';
 import { UserDetailsPage } from '@/pages/UserDetailsPage';
 import { UsersPage } from '@/pages/UsersPage';
 import { RouteProps } from 'react-router-dom';
@@ -8,6 +9,7 @@ enum AppRoutes {
     USERS = 'users',
     USERS_DETAILS = 'users_details',
     LOGIN = 'login',
+    REGISTRATION = 'registration',
     NOT_FOUND = 'not_found',
 }
 
@@ -15,6 +17,7 @@ export const routePath: Record<AppRoutes, string> = {
     [AppRoutes.USERS]: '/',
     [AppRoutes.USERS_DETAILS]: '/users/', //+ :id
     [AppRoutes.LOGIN]: '/login/',
+    [AppRoutes.REGISTRATION]: '/registration/',
     [AppRoutes.NOT_FOUND]: '*',
 };
 
@@ -30,6 +33,10 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     [AppRoutes.LOGIN]: {
         path: routePath.login,
         element: <LoginPage />,
+    },
+    [AppRoutes.REGISTRATION]: {
+        path: routePath.registration,
+        element: <RegistrationPage />,
     },
     // last
     [AppRoutes.NOT_FOUND]: {

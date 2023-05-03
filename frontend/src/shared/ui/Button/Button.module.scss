@@ -1,9 +1,10 @@
 .Button {
     cursor: pointer;
     color: var(--white);
-    padding: 6px 15px;
+    padding: 8px 16px;
     border-radius: 8px;
     background: var(--violet);
+    border: none;
     &:hover {
         opacity: 0.8;
         fill-opacity: 0.8;
@@ -13,7 +14,6 @@
 
 .clear {
     padding: 0;
-    border: none;
     background: none;
     outline: none;
 }
@@ -32,4 +32,13 @@
 
 .fullWidth {
     width: 100%;
+}
+
+.size_m {
+    font: var(--font-small);
+}
+
+.size_l {
+    font: var(--font-regular);
+    height: 48px;
 }

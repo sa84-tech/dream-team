@@ -3,8 +3,9 @@
     --violet: #512689;
     --black: #151317;
     --gray: #808185;
-    --gray_light: #F8F8F8;
-    --red: #FF6161;
+    --gray_light: #f8f8f8;
+    --gray_light_tr: rgba(248, 248, 248, 0.4);
+    --red: #ff6161;
     --white: #fff;
 
     // sizes
@@ -14,7 +15,7 @@
     --font-family: 'Roboto', sans-serif;
     --font-big: 32px / 42px var(--font-family);
     --font-regular: 16px / 24px var(--font-family);
-    --font-small: 14px / 22px var(--font-family);
+    --font-small: 14px / 18px var(--font-family);
     --font-h1: 64px / 75px var(--font-family);
     --font-h2: 20px / 22px var(--font-family);
 }

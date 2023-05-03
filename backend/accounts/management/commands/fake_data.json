@@ -116,7 +116,7 @@
       "last_name": "Петров",
       "is_superuser": true,
       "is_active": true,
-      "avatar": "https://source.unsplash.com/190x190/?male",
+      "avatar": "https://source.unsplash.com/191x190/?male",
       "role": "Владелец продукта",
       "bio": "Иван Петров - 30-летний статист, который любит работать с автомобилями, играть в шахматы и экстремально гладить. Он веселый и творческий, но также может быть очень грубым и немного сварливым.\n\nОн пристрастился к покупкам, на что указала его подруга Лекси Киан Уильямс, когда ему было 16 лет. Проблема обострилась в 2012 году. Иван потерял две работы из-за своей зависимости, а именно: уборщиком в студии и помощником продавца.\n\nФизически Иван в хорошей форме. Он высокий, с оливковой кожей, каштановыми волосами и голубыми глазами.\n\nОн вырос в рабочем районе. Никогда по-настоящему не зная своих родителей, он вырос в нескольких приемных семьях.\n\n",
       "phone": "79543334455"
@@ -127,7 +127,7 @@
       "last_name": "Королёв",
       "is_active": true,
       "is_superuser": false,
-      "avatar": "https://source.unsplash.com/191x191/?male",
+      "avatar": "https://source.unsplash.com/192x191/?male",
       "role": "Партнер",
       "bio": "Клиенты видят в нем эксперта по вопросам разработки комплексных решений финансовых продуктов, включая такие аспекты, как организационная структура, процессы, аналитика и ИТ-компоненты. Он помогает клиентам лучше понимать структуру рисков их бизнеса, улучшать процессы за счет применения новейших технологий и увеличивать продажи, используя самые современные аналитические инструменты. \n\nВ работе с клиентами недостаточно просто решить конкретную проблему или помочь справиться с трудностями. Не менее важно уделять внимание обмену знаниями: \"Один из самых позитивных моментов — это осознание того, что ты помог клиенту перейти на совершенно новый уровень компетентности, уверенность в том, что после окончания проекта у клиента есть все необходимое, чтобы дальше развиваться самостоятельно\". \n\nПомимо разнообразных проектов для клиентов финансового сектора, Сорин ведет активную предпринимательскую деятельность. Он является совладельцем сети клиник эстетической медицины в Швейцарии, предлагающей инновационный подход к красоте, а также инвестором других бизнес-проектов.\n\n",
       "phone": "79543334455"
@@ -138,7 +138,7 @@
       "last_name": "Шарикова",
       "is_active": true,
       "is_superuser": false,
-      "avatar": "https://source.unsplash.com/199x199/?female",
+      "avatar": "https://source.unsplash.com/191x199/?female",
       "role": "Разработчик",
       "bio": "",
       "phone": "79543334463"
@@ -149,7 +149,7 @@
       "last_name": "Сидоров",
       "is_active": true,
       "is_superuser": false,
-      "avatar": "https://source.unsplash.com/192x192/?male",
+      "avatar": "https://source.unsplash.com/191x192/?male",
       "role": "Разработчик",
       "bio": "",
       "phone": "79543334456"
@@ -160,7 +160,7 @@
       "last_name": "Смирнов",
       "is_active": true,
       "is_superuser": false,
-      "avatar": "https://source.unsplash.com/193x193/?male",
+      "avatar": "https://source.unsplash.com/191x193/?male",
       "role": "Архитектор",
       "bio": "",
       "phone": "79543334457"
@@ -171,7 +171,7 @@
       "last_name": "Семенова",
       "is_active": true,
       "is_superuser": false,
-      "avatar": "https://source.unsplash.com/198x198/?female",
+      "avatar": "https://source.unsplash.com/191x198/?female",
       "role": "Scrum-мастер",
       "bio": "",
       "phone": "79543334462"
@@ -182,7 +182,7 @@
       "last_name": "Ларина",
       "is_active": true,
       "is_superuser": false,
-      "avatar": "https://source.unsplash.com/197x197/?female",
+      "avatar": "https://source.unsplash.com/191x197/?female",
       "role": "Разработчик",
       "bio": "",
       "phone": "79543334461"
@@ -193,7 +193,7 @@
       "last_name": "Антипов",
       "is_active": true,
       "is_superuser": false,
-      "avatar": "https://source.unsplash.com/194x194/?male",
+      "avatar": "https://source.unsplash.com/191x194/?male",
       "role": "QA",
       "bio": "",
       "phone": "79543334458"
@@ -204,7 +204,7 @@
       "last_name": "Блинов",
       "is_active": true,
       "is_superuser": false,
-      "avatar": "https://source.unsplash.com/195x195/?male",
+      "avatar": "https://source.unsplash.com/191x195/?male",
       "role": "Бизнес аналитик",
       "bio": "",
       "phone": "79543334459"
@@ -215,7 +215,7 @@
       "last_name": "Салатова",
       "is_active": true,
       "is_superuser": false,
-      "avatar": "https://source.unsplash.com/196x196/?female",
+      "avatar": "https://source.unsplash.com/191x196/?female",
       "role": "Разработчик",
       "bio": "",
       "phone": "79543334460"

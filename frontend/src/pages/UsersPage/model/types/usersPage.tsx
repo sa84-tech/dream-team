@@ -7,7 +7,6 @@ export interface UsersPageSchema  extends EntityState<User> {
 
     // pagination
     total: number;
-    limit: number;
     offset: number;
     next: string,
     previous: string,
