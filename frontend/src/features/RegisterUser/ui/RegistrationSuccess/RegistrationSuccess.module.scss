@@ -1,7 +1,7 @@
-.LoginForm {
+.RegistrationSuccess {
     border-radius: 16px;
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
-    width: 500px;
+    width: 400px;
     overflow: hidden;
     padding: 16px;
     display: flex;
@@ -10,15 +10,11 @@
 
     h2 {
         font: var(--font-h2);
+        margin-bottom: 22px;
     }
 
     button {
-        margin-top: 24px;
-        margin-bottom: 24px;
-    }
-
-    .link {
-        color: var(--violet);
-        margin: 0 auto;
+        margin-top: 28px;
+        margin-bottom: 20px;
     }
 }

@@ -1,0 +1,30 @@
+.LoginForm {
+    border-radius: 16px;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+    width: 500px;
+    overflow: hidden;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    margin: 16px;
+
+    h2 {
+        font: var(--font-h2);
+    }
+
+    button {
+        margin-top: 24px;
+        margin-bottom: 24px;
+    }
+
+    .link {
+        color: var(--violet);
+        margin: 0 auto;
+    }
+
+    .error {
+        color: var(--red);
+        font: var(--font-small);
+        margin-top: 16px;
+    }
+}

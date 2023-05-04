@@ -1,48 +1,58 @@
 import { ThunkConfig } from '@/app/providers/StoreProvider/config/stateSchema';
 import { User } from '@/entities/User';
 import { $api } from '@/shared/api/api';
+import { ValidationErrors } from '@/shared/const/validation';
+import { getFirstName, getLastName } from '@/shared/lib/names/getName';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 import { getRegistrationData } from '../../selectors/registrationSelectors';
 import {
-    validateRegistrationData,
-} from '../validateRegistrationData/validateRegistrationData';
-import { getFirstName, getLastName } from '@/shared/lib/names/getName';
-import { RegistrationErrors, ValidateRegistrationError } from '../../types/registration';
+    RegistrationErrors,
+} from '../../types/registration';
+import { validateRegistrationData } from '../validateRegistrationData/validateRegistrationData';
 
-export const registerUser = createAsyncThunk<User, void, ThunkConfig<RegistrationErrors>>(
-    'registration/registerUser',
-    async (_, thunkApi) => {
-        const { rejectWithValue, getState } = thunkApi;
+export const registerUser = createAsyncThunk<
+    User,
+    void,
+    ThunkConfig<RegistrationErrors | string>
+>('registration/registerUser', async (_, thunkApi) => {
+    const { rejectWithValue, getState } = thunkApi;
+    const formData = getRegistrationData(getState());
+    const errors = validateRegistrationData(formData);
+    
+    if (Object.keys(errors).length !== 0) {
+        return rejectWithValue(errors);
+    }
 
-        const formData = getRegistrationData(getState());
-        console.log("🚀 ~ file: registerUser.ts:18 ~ formData:", formData)
+    const requestBody = {
+        firstName: getFirstName(formData?.name),
+        lastName: getLastName(formData?.name),
+        email: formData?.email,
+        password: formData?.password1,
+    };
 
-        const errors = validateRegistrationData(formData);
-        console.log("🚀 ~ file: registerUser.ts:20 ~ errors:", errors)
+    try {
+        const response = await $api.post<User>('/users/', requestBody);
 
-        if (Object.keys(errors).length !== 0) {
-            rejectWithValue(errors);
+        if (!response.data) {
+            throw new Error('no data');
         }
 
-        const requestBody = {
-            firstName: getFirstName(formData?.name),
-            lastName: getLastName(formData?.name),
-            email: formData?.email,
-            password: formData?.password1,
-        };
+        return response.data;
+    } catch (_err) {
+        const err = _err as AxiosError;
 
-        try {
-            const response = await $api.post<User>('/users/', requestBody);
-
-            if (!response.data) {
-                throw new Error();
+        if (err.response) {
+            if (err.response.status === 400) {
+                return rejectWithValue(err.response.data as RegistrationErrors);
             }
-
-            return response.data;
-        } catch (e) {
-            console.log(e);
-            errors.error = [ValidateRegistrationError.SERVER_ERROR];
-            return rejectWithValue(errors);
+            return rejectWithValue(ValidationErrors.SERVER_ERROR);
         }
-    },
-);
+
+        if (err.request) {
+            return rejectWithValue(ValidationErrors.NO_RESPONSE);
+        }
+
+        return rejectWithValue(ValidationErrors.UNKNOWN_ERROR);
+    }
+});

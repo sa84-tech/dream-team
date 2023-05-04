@@ -1,15 +1,16 @@
-import { RegistrationForm } from '@/entities/RegistrationForm';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import {
+    getCreatedUser,
     getRegistrationData,
-    getRegistrationValidateErrors
+    getRegistrationIsLoading,
+    getRegistrationValidationErrors,
 } from '../../model/selectors/registrationSelectors';
 import { registerUser } from '../../model/services/registerUser/registerUser';
 import { registrationActions } from '../../model/slices/registrationSlice';
-import cls from './RegisterUser.module.scss';
+import { RegistrationForm } from '../RegistrationForm/RegistrationForm';
+import { RegistrationSuccess } from '../RegistrationSuccess/RegistrationSuccess';
 
 interface RegisterUserProps {
     className?: string;
@@ -17,9 +18,12 @@ interface RegisterUserProps {
 
 export const RegisterUser = memo((props: RegisterUserProps) => {
     const { className } = props;
+    
     const dispatch = useAppDispatch();
     const registrationData = useSelector(getRegistrationData);
-    const validateErrors = useSelector(getRegistrationValidateErrors);
+    const validationErrors = useSelector(getRegistrationValidationErrors);
+    const isLoading = useSelector(getRegistrationIsLoading);
+    const newUser = useSelector(getCreatedUser);
 
     const onChangeName = useCallback(
         (value?: string) => {
@@ -53,17 +57,21 @@ export const RegisterUser = memo((props: RegisterUserProps) => {
         dispatch(registerUser());
     }, [dispatch]);
 
+    if (newUser) {
+        return <RegistrationSuccess />;
+    }
+
     return (
-        <div className={classNames(cls.RegisterUser, {}, [className])}>
-            <RegistrationForm
-                data={registrationData}
-                errors={validateErrors}
-                onChangeName={onChangeName}
-                onChangeEmail={onChangeEmail}
-                onChangePassword1={onChangePassword1}
-                onChangePassword2={onChangePassword2}
-                onRegister={onRegister}
-            />
-        </div>
+        <RegistrationForm
+            data={registrationData}
+            errors={validationErrors}
+            onChangeName={onChangeName}
+            onChangeEmail={onChangeEmail}
+            onChangePassword1={onChangePassword1}
+            onChangePassword2={onChangePassword2}
+            onRegister={onRegister}
+            isLoading={isLoading}
+            className={className}
+        />
     );
 });

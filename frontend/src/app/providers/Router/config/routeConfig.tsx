@@ -5,6 +5,10 @@ import { UserDetailsPage } from '@/pages/UserDetailsPage';
 import { UsersPage } from '@/pages/UsersPage';
 import { RouteProps } from 'react-router-dom';
 
+export type AppRouteProps = RouteProps & {
+    authOnly?: boolean;
+}
+
 enum AppRoutes {
     USERS = 'users',
     USERS_DETAILS = 'users_details',
@@ -21,14 +25,16 @@ export const routePath: Record<AppRoutes, string> = {
     [AppRoutes.NOT_FOUND]: '*',
 };
 
-export const routeConfig: Record<AppRoutes, RouteProps> = {
+export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     [AppRoutes.USERS]: {
         path: routePath.users,
         element: <UsersPage />,
+        authOnly: true,
     },
     [AppRoutes.USERS_DETAILS]: {
         path: `${routePath.users_details}:id`,
         element: <UserDetailsPage />,
+        authOnly: true,
     },
     [AppRoutes.LOGIN]: {
         path: routePath.login,

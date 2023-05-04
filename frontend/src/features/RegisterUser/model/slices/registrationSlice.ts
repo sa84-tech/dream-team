@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RegistrationSchema } from '../types/registration';
-import { RegistrationFormSchema } from '@/entities/RegistrationForm';
+import { RegistrationFormSchema, RegistrationSchema } from '../types/registration';
 import { registerUser } from '../services/registerUser/registerUser';
 import { User } from '@/entities/User';
 
@@ -9,11 +8,11 @@ const initData = {
     name: '',
     password1: '',
     password2: '',
-}
+};
 
 const initialState: RegistrationSchema = {
     isLoading: false,
-    validateErrors: undefined,
+    validationErrors: undefined,
     data: initData,
     user: undefined,
 };
@@ -28,6 +27,12 @@ export const registrationSlice = createSlice({
                 ...action.payload,
             };
         },
+        clearData: (state) => {
+            state.user = undefined;
+            state.data = initData;
+            state.validationErrors = undefined;
+            state.error = undefined;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -35,13 +40,20 @@ export const registrationSlice = createSlice({
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(registerUser.fulfilled, (state, action: PayloadAction<User>) => {
-                state.isLoading = false;
-                state.user = action.payload;
-            })
+            .addCase(
+                registerUser.fulfilled,
+                (state, action: PayloadAction<User>) => {
+                    state.isLoading = false;
+                    state.user = action.payload;
+                }
+            )
             .addCase(registerUser.rejected, (state, action) => {
                 state.isLoading = false;
-                state.validateErrors = action.payload;
+                if (typeof action.payload === 'string') {
+                    state.error = action.payload;
+                } else {
+                    state.validationErrors = action.payload;
+                }
             });
     },
 });

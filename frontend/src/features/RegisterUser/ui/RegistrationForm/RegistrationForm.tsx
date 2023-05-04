@@ -3,13 +3,14 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonSize, ButtonVariant } from '@/shared/ui/Button/Button';
 import { Input } from '@/shared/ui/Input/Input';
 import { memo } from 'react';
-import { RegistrationFormSchema } from '..';
 import cls from './RegistrationForm.module.scss';
+import { RegistrationFormSchema } from '../../model/types/registration';
 
 interface RegistrationFormProps {
     className?: string;
     data?: RegistrationFormSchema;
     errors?: RegistrationErrors;
+    isLoading?: boolean;
     onChangeName?: (value: string) => void;
     onChangeEmail?: (value: string) => void;
     onChangePassword1?: (value: string) => void;
@@ -22,6 +23,7 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
         className,
         data,
         errors,
+        isLoading,
         onChangeName,
         onChangeEmail,
         onChangePassword1,
@@ -65,7 +67,7 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
                 errors={errors?.password2}
             />
 
-            <Button size={ButtonSize.L} variant={ButtonVariant.PRIMARY} onClick={onRegister}>
+            <Button size={ButtonSize.L} variant={ButtonVariant.PRIMARY} onClick={onRegister} disabled={isLoading}>
                 Зарегистрироваться
             </Button>
         </div>
