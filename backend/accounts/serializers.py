@@ -1,5 +1,3 @@
-from abc import ABC
-
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -7,9 +5,9 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
-        if "password" in validated_data:
+        if 'password' in validated_data:
             from django.contrib.auth.hashers import make_password
-            validated_data["password"] = make_password(validated_data["password"])
+            validated_data['password'] = make_password(validated_data['password'])
         return super().create(validated_data)
 
     class Meta:

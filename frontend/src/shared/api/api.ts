@@ -10,6 +10,6 @@ $api.interceptors.request.use((config) => addAuthToken(config));
 
 $api.interceptors.response.use(
     (config) => config,
-    (error) => refreshAccessToken(error)
+    (error) => refreshAccessToken(error, 'token/refresh/')
         .then((originalRequest) => $api(originalRequest)),
 );

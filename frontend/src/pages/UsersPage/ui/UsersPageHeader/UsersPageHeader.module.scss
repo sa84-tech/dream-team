@@ -15,4 +15,15 @@
         margin-top: 16px;
         font: var(--font-h2);
     }
+
+    @media (max-width: 767px) {
+        h1 {
+            font: var(--font-big);
+        }
+    
+        p {
+            font: var(--font-regular);
+        }
+    }
 }
+

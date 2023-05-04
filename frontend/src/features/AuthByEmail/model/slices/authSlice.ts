@@ -40,10 +40,13 @@ export const authSlice = createSlice({
         builder
             .addCase(loginByEmail.pending, (state) => {
                 state.error = undefined;
+                state.validationErrors = undefined;
                 state.isLoading = true;
             })
             .addCase(loginByEmail.fulfilled, (state) => {
                 state.isLoading = false;
+                state.validationErrors = undefined;
+                state.error = undefined;
             })
             .addCase(loginByEmail.rejected, (state, action) => {
                 state.isLoading = false;

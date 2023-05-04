@@ -1,19 +1,21 @@
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, {
+    AxiosError,
+    InternalAxiosRequestConfig
+} from 'axios';
 
-export interface OriginalRequestConfig extends AxiosRequestConfig {
+export interface OriginalRequestConfig extends InternalAxiosRequestConfig {
     hasAttempt?: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const refreshAccessToken = async (error: any) => {
-    const originalRequest: OriginalRequestConfig = error.config;
+export const refreshAccessToken = async (
+    error: AxiosError,
+    refreshUrl: string
+) => {
+    const originalRequest: OriginalRequestConfig = error.config!;
 
     if (originalRequest.url !== 'token/' && error.response) {
-        if (
-            (error.response.status === 401 || error.response.status === 403) &&
-            !error.config.hasAttempt
-        ) {
+        if (error.response.status === 401 && !originalRequest.hasAttempt) {
             originalRequest.hasAttempt = true;
 
             const authData = localStorage.getItem(USER_LOCALSTORAGE_KEY);
@@ -23,16 +25,19 @@ export const refreshAccessToken = async (error: any) => {
             const tokens = JSON.parse(authData);
 
             try {
-                const res = await axios.post(`${__API__}/api/token/refresh/`, {
-                    refresh: tokens.refresh,
-                });
+                const res = await axios.post(
+                    originalRequest.baseURL + refreshUrl,
+                    {
+                        refresh: tokens.refresh,
+                    }
+                );
 
                 localStorage.setItem(
                     USER_LOCALSTORAGE_KEY,
                     JSON.stringify({
                         ...tokens,
                         ...res.data,
-                    }),
+                    })
                 );
                 return originalRequest;
             } catch (err) {

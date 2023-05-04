@@ -14,7 +14,7 @@ export const fetchUserDetails = createAsyncThunk<
             const { rejectWithValue } = thunkApi;
 
             try {
-                const response = await $api.get<User>(routePath.users_details + userId);
+                const response = await $api.get<User>(`${routePath.users_details}${userId}/`);
 
                 if (!response.data) {
                     throw new Error();
