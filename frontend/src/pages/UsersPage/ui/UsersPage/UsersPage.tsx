@@ -6,7 +6,11 @@ import { Button, ButtonVariant } from '@/shared/ui/Button/Button';
 import { Header } from '@/widgets/Header';
 import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { getUsersPageIsLoading, getUsersPageNext, getUsersPageOffset } from '../../model/selectors/usersPageSelectors';
+import {
+    getUsersPageIsLoading,
+    getUsersPageNext,
+    getUsersPageOffset,
+} from '../../model/selectors/usersPageSelectors';
 import { fetchUsers } from '../../model/services/fetchUsers/fetchUsers';
 import { getUsers, usersPageActions } from '../../model/slices/usersPageSlice';
 import { UsersPageHeader } from '../UsersPageHeader/UsersPageHeader';
@@ -23,29 +27,35 @@ export const UsersPage = memo((props: UsersPageProps) => {
 
     const users = useSelector(getUsers.selectAll);
     const isLoading = useSelector(getUsersPageIsLoading);
-    const offset = useSelector(getUsersPageOffset)
-    const next = useSelector(getUsersPageNext)
+    const offset = useSelector(getUsersPageOffset);
+    const next = useSelector(getUsersPageNext);
+
+    const initLoading = isLoading && offset === 0;
 
     useEffect(() => {
         dispatch(fetchUsers({}));
     }, [dispatch]);
 
     const onShowMore = useCallback(() => {
-        
         if (next) {
             dispatch(usersPageActions.setOffset(offset + 8));
-            dispatch(fetchUsers({addMore: true}))
+            dispatch(fetchUsers({ addMore: true }));
         }
-    }, [dispatch, offset, next])
+    }, [dispatch, offset, next]);
 
     return (
         <div className={classNames(cls.UsersPage, {}, [className])}>
             <Header mainContentSlot={<UsersPageHeader />} />
             <main className={cls.main}>
-                <UsersList isLoading={isLoading} users={users} />
+                <UsersList isLoading={initLoading} users={users} />
             </main>
-            <div className={classNames(cls.more, {[cls.hidden]: !next})}>
-                <Button className={cls.logoutBtn} variant={ButtonVariant.OUTLINE} onClick={onShowMore} disabled={!next}>
+            <div className={classNames(cls.more, { [cls.hidden]: !next })}>
+                <Button
+                    className={cls.logoutBtn}
+                    variant={ButtonVariant.OUTLINE}
+                    onClick={onShowMore}
+                    isLoading={isLoading}
+                >
                     Показать еще <Arrow />
                 </Button>
             </div>

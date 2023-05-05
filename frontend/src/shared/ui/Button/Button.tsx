@@ -20,6 +20,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     fullWidth?: boolean;
     size?: ButtonSize;
     square?: boolean;
+    isLoading?: boolean;
 }
 
 export const Button = memo((props: ButtonProps) => {
@@ -29,6 +30,7 @@ export const Button = memo((props: ButtonProps) => {
         children,
         square,
         size = ButtonSize.M,
+        isLoading = false,
         ...otherProps
     } = props;
 
@@ -39,6 +41,7 @@ export const Button = memo((props: ButtonProps) => {
     return (
         <button
             className={classNames(cls.Button, mods, [cls[variant], cls[size], className])}
+            disabled={isLoading}
             {...otherProps}
         >
             {children}

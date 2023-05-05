@@ -1,11 +1,11 @@
 import { authActions } from '@/features/AuthByEmail/model/slices/authSlice';
+import ExitIcon from '@/shared/assets/icons/exit.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Button, ButtonSize, ButtonVariant } from '@/shared/ui/Button/Button';
+import { useResize } from '@/shared/lib/hooks/useResize/useResize';
+import { Button, ButtonVariant } from '@/shared/ui/Button/Button';
 import { ReactNode, memo, useCallback } from 'react';
 import cls from './Header.module.scss';
-import { useResize } from '@/shared/lib/hooks/useResize/useResize';
-import ExitIcon from '@/shared/assets/icons/exit.svg';
 
 interface HeaderProps {
     mainContentSlot: ReactNode;

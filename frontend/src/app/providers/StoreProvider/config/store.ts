@@ -1,4 +1,3 @@
-import { counterReducer } from '@/entities/Counter';
 import { authReducer } from '@/features/AuthByEmail/model/slices/authSlice';
 import { registrationReducer } from '@/features/RegisterUser/model/slices/registrationSlice';
 import { userDetailsReducer } from '@/pages/UserDetailsPage/model/slices/userDetailsSlice';
@@ -8,7 +7,6 @@ import { StateSchema } from './stateSchema';
 
 export function createReduxStore(initialState?: StateSchema) {
     const rootReducers: ReducersMapObject<StateSchema> = {
-        counter: counterReducer,
         usersPage: usersPageReducer,
         userDetails: userDetailsReducer,
         auth: authReducer,

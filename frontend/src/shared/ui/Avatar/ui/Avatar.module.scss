@@ -3,3 +3,11 @@
     height: 100px;
     width: 100px;
 }
+
+.icon {
+    border-radius: 50%;
+    background-color: var(--gray_light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

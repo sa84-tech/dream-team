@@ -1,6 +1,19 @@
 .UserDetailsPageHeader {
     color: white;
     width: 100%;
+
+    .container {
+        padding: 0 188px;
+        display: flex;
+        justify-content: start;
+    }
+
+    .card {
+        border: none;
+        display: flex;
+        width: 100%;
+    }
+
     h1,
     p {
         text-align: center;
@@ -21,12 +34,51 @@
         margin-top: 16px;
         font: var(--font-big);
     }
+
+    @media (max-width: 991px) {
+        .container {
+            padding: 0 80px;
+        }
+        .name {
+            font: var(--font-big);
+            text-align: center;
+        }
+
+        .role {
+            font: var(--font-h2);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 0 32px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .container {
+            padding: 0;
+            display: block;
+        }
+
+        .card {
+            flex-direction: column-reverse;
+            align-items: center;
+            margin: 64px 0;
+        }
+        .info {
+            margin-left: 0;
+        }
+
+        .name {
+            font: var(--font-big);
+            text-align: center;
+        }
+
+        .role {
+            margin: 16px 0;
+            font: var(--font-h2);
+            text-align: center;
+        }
+    }
 }
-
-.container {
-    padding: 48px 188px;
-
-    display: flex;
-    justify-content: start;
-}
-

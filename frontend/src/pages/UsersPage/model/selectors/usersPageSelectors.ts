@@ -8,12 +8,4 @@ export const getUsersPageOffset = (state: StateSchema) => state.usersPage?.offse
 
 export const getUsersPageNext = (state: StateSchema) => state.usersPage?.next ? true : false;
 
-export const getUsersPageLimit = (state: StateSchema) => state.usersPage?.limit ?? 8;
-
 export const getUsersPageTotal = (state: StateSchema) => state.usersPage?.total;
-
-export const getUsersPageCount = (state: StateSchema) => {
-    const limit = state.usersPage?.limit;
-    const total = state.usersPage?.total;
-    return Math.ceil(total / limit)
-};

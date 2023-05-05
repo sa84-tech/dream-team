@@ -4,6 +4,11 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(
+        write_only=True,
+        required=True,
+    )
+        
     def create(self, validated_data):
         if 'password' in validated_data:
             from django.contrib.auth.hashers import make_password
@@ -13,7 +18,6 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = '__all__'
-        write_only_fields = ('password',)
 
 
 class UserShortSerializer(serializers.ModelSerializer):

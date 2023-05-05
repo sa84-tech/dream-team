@@ -7,19 +7,32 @@ import cls from './UsersList.module.scss';
 interface UsersListProps {
     className?: string;
     users: User[];
-    isLoading?: boolean
+    isLoading?: boolean;
 }
 
 export const UsersList = memo((props: UsersListProps) => {
     const { className, users, isLoading } = props;
 
     const renderListItem = useCallback(
-        (user: User) => (
-            <UserCard key={user.id} user={user} className={cls.card} />
-        ),
+        (user: User) => <UserCard key={user.id} user={user} className={cls.card} />,
         [],
     );
-	
+
+    if (isLoading) {
+        return (
+            <div className={classNames(cls.UsersList, {}, [className])}>
+                <UserCard user={{ id: 0, email: '' }} isLoading={true} className={cls.card} />
+                <UserCard user={{ id: 0, email: '' }} isLoading={true} className={cls.card} />
+                <UserCard user={{ id: 0, email: '' }} isLoading={true} className={cls.card} />
+                <UserCard user={{ id: 0, email: '' }} isLoading={true} className={cls.card} />
+                <UserCard user={{ id: 0, email: '' }} isLoading={true} className={cls.card} />
+                <UserCard user={{ id: 0, email: '' }} isLoading={true} className={cls.card} />
+                <UserCard user={{ id: 0, email: '' }} isLoading={true} className={cls.card} />
+                <UserCard user={{ id: 0, email: '' }} isLoading={true} className={cls.card} />
+            </div>
+        );
+    }
+
     return (
         <div className={classNames(cls.UsersList, {}, [className])}>
             {users.map(renderListItem)}
