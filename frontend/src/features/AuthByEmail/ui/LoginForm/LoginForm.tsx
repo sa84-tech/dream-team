@@ -2,10 +2,11 @@ import { routePath } from '@/app/providers/Router/config/routeConfig';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonSize, ButtonVariant } from '@/shared/ui/Button/Button';
 import { Input } from '@/shared/ui/Input/Input';
-import { memo } from 'react';
+import { PasswordIcon } from '@/shared/ui/PasswordIcon/PasswordIcon';
+import { memo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import cls from './LoginForm.module.scss';
 import { AuthErrors } from '../../model/types/authSchema';
+import cls from './LoginForm.module.scss';
 
 interface LoginFormProps {
     className?: string;
@@ -32,6 +33,8 @@ export const LoginForm = memo((props: LoginFormProps) => {
         isLoading,
     } = props;
 
+    const [showPassword, setShowPassword] = useState(false);
+
     return (
         <div className={classNames(cls.LoginForm, {}, [className])}>
             <h2 className={cls.title}>Авторизация</h2>
@@ -40,22 +43,34 @@ export const LoginForm = memo((props: LoginFormProps) => {
             <Input
                 value={email}
                 onChange={onChangeEmail}
-                placeholder="Электронная почта"
-                type="email"
+                placeholder='Электронная почта'
+                type='email'
                 errors={validationErrors?.email}
                 autofocus
             />
             <Input
                 value={password}
                 onChange={onChangePassword}
-                placeholder="Пароль"
-                type="password"
+                placeholder='Пароль'
                 errors={validationErrors?.password}
+                type={showPassword ? 'text' : 'password'}
+                IconSlot={
+                    <PasswordIcon
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        isPasswordVisible={showPassword}
+                    />
+                }
             />
 
-            <Button onClick={onLoginClick} size={ButtonSize.L} variant={ButtonVariant.PRIMARY} disabled={isLoading}>
+            <Button
+                onClick={onLoginClick}
+                size={ButtonSize.L}
+                variant={ButtonVariant.PRIMARY}
+                disabled={isLoading}
+            >
                 Войти
             </Button>
+
             <Link to={routePath.registration} className={cls.link}>
                 Зарегистрироваться
             </Link>

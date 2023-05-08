@@ -2,9 +2,10 @@ import { RegistrationErrors } from '@/features/RegisterUser';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonSize, ButtonVariant } from '@/shared/ui/Button/Button';
 import { Input } from '@/shared/ui/Input/Input';
-import { memo } from 'react';
-import cls from './RegistrationForm.module.scss';
+import { PasswordIcon } from '@/shared/ui/PasswordIcon/PasswordIcon';
+import { memo, useState } from 'react';
 import { RegistrationFormSchema } from '../../model/types/registration';
+import cls from './RegistrationForm.module.scss';
 
 interface RegistrationFormProps {
     className?: string;
@@ -31,6 +32,9 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
         onRegister,
     } = props;
 
+    const [showPassword1, setShowPassword1] = useState(false);
+    const [showPassword2, setShowPassword2] = useState(false);
+
     return (
         <div className={classNames(cls.RegistrationForm, {}, [className])}>
             <h2 className={cls.title}>Регистрация</h2>
@@ -39,35 +43,53 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
                 value={data?.name}
                 onChange={onChangeName}
                 errors={errors?.name}
-                placeholder="Имя"
+                placeholder='Имя'
                 autofocus
+                type='text'
             />
 
             <Input
                 value={data?.email}
                 onChange={onChangeEmail}
-                placeholder="Электронная почта"
-                type="email"
+                placeholder='Электронная почта'
+                type='email'
                 errors={errors?.email}
             />
 
             <Input
                 value={data?.password1}
                 onChange={onChangePassword1}
-                placeholder="Пароль"
-                type="password"
+                placeholder='Пароль'
                 errors={errors?.password1}
+                type={showPassword1 ? 'text' : 'password'}
+                IconSlot={
+                    <PasswordIcon
+                        onClick={() => setShowPassword1((prev) => !prev)}
+                        isPasswordVisible={showPassword1}
+                    />
+                }
             />
 
             <Input
                 value={data?.password2}
                 onChange={onChangePassword2}
-                placeholder="Подтвердите пароль"
-                type="password"
+                placeholder='Подтвердите пароль'
                 errors={errors?.password2}
+                type={showPassword2 ? 'text' : 'password'}
+                IconSlot={
+                    <PasswordIcon
+                        onClick={() => setShowPassword2((prev) => !prev)}
+                        isPasswordVisible={showPassword2}
+                    />
+                }
             />
 
-            <Button size={ButtonSize.L} variant={ButtonVariant.PRIMARY} onClick={onRegister} disabled={isLoading}>
+            <Button
+                size={ButtonSize.L}
+                variant={ButtonVariant.PRIMARY}
+                onClick={onRegister}
+                disabled={isLoading}
+            >
                 Зарегистрироваться
             </Button>
         </div>

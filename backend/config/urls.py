@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from posixpath import relpath
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
@@ -25,5 +26,6 @@ urlpatterns = [
     path('api/v1/users/', include('accounts.urls')),
     path('api/v1/login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/v1/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('', TemplateView.as_view(template_name='index.html'))
+    path('', TemplateView.as_view(template_name='index.html')),
+    path('<path:route>', TemplateView.as_view(template_name='index.html')),
 ]
