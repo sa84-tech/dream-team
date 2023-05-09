@@ -6,16 +6,18 @@ interface SkeletonProps {
     className?: string;
     height?: string | number;
     width?: string | number;
+    display?: 'block' | 'inline-block' | 'inline'
     border?: string;
 }
 
 export const Skeleton = memo((props: SkeletonProps) => {
-    const { className, height, width, border } = props;
+    const { className, height, width, border, display = 'block' } = props;
 
     const styles: CSSProperties = {
         width,
         height,
         borderRadius: border,
+        display,
     };
 
     return (

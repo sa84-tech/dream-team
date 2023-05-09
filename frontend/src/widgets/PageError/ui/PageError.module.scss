@@ -1,11 +1,11 @@
 .PageError {
     text-align: center;
-    height: 100vh;
     overflow-y: auto;
     color: var(--violet);
-    padding-top: calc( 100vh * .3);
+    padding: 16px;
+    padding-top: 64px;
     p {
-        font: var(--font-h1);
+        font: var(--font-big);
         margin-bottom: 32px;
     }
 }

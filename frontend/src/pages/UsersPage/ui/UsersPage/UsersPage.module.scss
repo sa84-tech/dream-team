@@ -29,3 +29,15 @@
 .hidden {
     display: none;
 }
+
+@media (max-width: 767px) {
+    .main {
+        padding: 32px;
+    }
+}
+
+@media (max-width: 575px) {
+    .main {
+        padding: 16px;
+    }
+}

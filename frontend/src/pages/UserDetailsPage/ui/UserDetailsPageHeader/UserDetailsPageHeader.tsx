@@ -3,33 +3,90 @@ import cls from './UserDetailsPageHeader.module.scss';
 import { User } from '@/entities/User';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { useResize } from '@/shared/lib/hooks/useResize/useResize';
 
 interface UserDetailsPageHeaderProps {
     className?: string;
     user?: User;
     isLoading?: boolean;
+    error?: string;
 }
 
 export const UserDetailsPageHeader = (props: UserDetailsPageHeaderProps) => {
-    const { className, user, isLoading } = props;
+    const { className, user, isLoading, error } = props;
+
+    const screen = useResize();
+
+    const skeletonNameHeight = screen.isXL ? 75 : 42;
+    const skeletonRoleHeight = screen.isXL ? 42 : 22;
+
+    if (isLoading) {
+        return (
+            <div
+                className={classNames(cls.UserDetailsPageHeader, {}, [
+                    className,
+                ])}
+            >
+                <main className={cls.container}>
+                    <div className={classNames(cls.card, {}, [className])}>
+                        <Skeleton
+                            className={cls.avatar}
+                            border='50%'
+                            width={187}
+                            height={187}
+                        />
+                        <div className={cls.info}>
+                            <h1 className={cls.name}>
+                                <Skeleton
+                                    border='8px'
+                                    width={skeletonNameHeight * 6}
+                                    height={skeletonNameHeight}
+                                />
+                            </h1>
+                            <div className={cls.role}>
+                                <Skeleton
+                                    border='8px'
+                                    width='75%'
+                                    height={skeletonRoleHeight}
+                                    display='inline-block'
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div
+                className={classNames(cls.UserDetailsPageHeader, {}, [
+                    className,
+                ])}
+            >
+                <h1 style={{ textAlign: 'center' }} className={cls.name}>
+                    Нет данных
+                </h1>
+            </div>
+        );
+    }
 
     return (
         <div className={classNames(cls.UserDetailsPageHeader, {}, [className])}>
             <main className={cls.container}>
                 <div className={classNames(cls.card, {}, [className])}>
-                    {isLoading ? (
-                        <Skeleton className={cls.avatar} border="50%" width={187} height={187} />
-                    ) : (
-                        <>
-                            <Avatar className={cls.avatar} src={user?.avatar} size={187} />
-                            <div className={cls.info}>
-                                <h1 className={cls.name}>
-                                    {user?.firstName} {user?.lastName}
-                                </h1>
-                                <div className={cls.role}>{user?.role}</div>
-                            </div>
-                        </>
-                    )}
+                    <Avatar
+                        className={cls.avatar}
+                        src={user?.avatar}
+                        size={187}
+                    />
+                    <div className={cls.info}>
+                        <h1 className={cls.name}>
+                            {user?.firstName} {user?.lastName}
+                        </h1>
+                        <div className={cls.role}>{user?.role}</div>
+                    </div>
                 </div>
             </main>
         </div>

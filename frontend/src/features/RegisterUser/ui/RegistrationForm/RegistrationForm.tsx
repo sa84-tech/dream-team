@@ -2,7 +2,7 @@ import { RegistrationErrors } from '@/features/RegisterUser';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonSize, ButtonVariant } from '@/shared/ui/Button/Button';
 import { Input } from '@/shared/ui/Input/Input';
-import { PasswordIcon } from '@/shared/ui/PasswordIcon/PasswordIcon';
+import { PasswordIcon } from '@/entities/PasswordIcon/PasswordIcon';
 import { memo, useState } from 'react';
 import { RegistrationFormSchema } from '../../model/types/registration';
 import cls from './RegistrationForm.module.scss';
