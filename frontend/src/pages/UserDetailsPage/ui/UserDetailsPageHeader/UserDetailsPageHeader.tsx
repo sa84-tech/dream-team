@@ -27,7 +27,7 @@ export const UserDetailsPageHeader = (props: UserDetailsPageHeaderProps) => {
                     className,
                 ])}
             >
-                <main className={cls.container}>
+                <div className={cls.container}>
                     <div className={classNames(cls.card, {}, [className])}>
                         <Skeleton
                             className={cls.avatar}
@@ -53,7 +53,7 @@ export const UserDetailsPageHeader = (props: UserDetailsPageHeaderProps) => {
                             </div>
                         </div>
                     </div>
-                </main>
+                </div>
             </div>
         );
     }
@@ -74,7 +74,7 @@ export const UserDetailsPageHeader = (props: UserDetailsPageHeaderProps) => {
 
     return (
         <div className={classNames(cls.UserDetailsPageHeader, {}, [className])}>
-            <main className={cls.container}>
+            <div className={cls.container}>
                 <div className={classNames(cls.card, {}, [className])}>
                     <Avatar
                         className={cls.avatar}
@@ -88,7 +88,7 @@ export const UserDetailsPageHeader = (props: UserDetailsPageHeaderProps) => {
                         <div className={cls.role}>{user?.role}</div>
                     </div>
                 </div>
-            </main>
+            </div>
         </div>
     );
 };

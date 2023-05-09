@@ -1,5 +1,5 @@
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
-import { InputHTMLAttributes, ReactNode, useEffect, useRef } from 'react';
+import { InputHTMLAttributes, ReactNode, memo, useEffect, useRef } from 'react';
 import cls from './Input.module.scss';
 
 type HTMLInputProps = Omit<
@@ -16,7 +16,7 @@ interface InputProps extends HTMLInputProps {
     IconSlot?: ReactNode;
 }
 
-export const Input = (props: InputProps) => {
+export const Input = memo((props: InputProps) => {
     const {
         className,
         value,
@@ -70,4 +70,4 @@ export const Input = (props: InputProps) => {
                 ))}
         </div>
     );
-};
+});

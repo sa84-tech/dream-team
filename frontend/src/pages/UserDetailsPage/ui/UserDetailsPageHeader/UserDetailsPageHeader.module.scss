@@ -27,15 +27,15 @@
 
     .role {
         margin-top: 16px;
-        font: var(--font-big);
+        font: var(--font-h2);
     }
 
     @media (max-width: 1199px) {
         .name {
-            font: var(--font-big);
+            font: var(--font-h2);
         }
         .role {
-            font: var(--font-h2);
+            font: var(--font-h3);
         }
     }
 
@@ -44,11 +44,11 @@
             padding: 0 80px;
         }
         .name {
-            font: var(--font-big);
+            font: var(--font-h2);
         }
 
         .role {
-            font: var(--font-h2);
+            font: var(--font-h3);
         }
     }
 
@@ -74,13 +74,13 @@
         }
 
         .name {
-            font: var(--font-big);
+            font: var(--font-h2);
             text-align: center;
         }
 
         .role {
             margin: 16px 0;
-            font: var(--font-h2);
+            font: var(--font-h3);
             text-align: center;
         }
     }

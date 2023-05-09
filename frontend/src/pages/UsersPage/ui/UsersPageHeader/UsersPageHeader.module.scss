@@ -13,16 +13,16 @@
 
     p {
         margin-top: 16px;
-        font: var(--font-h2);
+        font: var(--font-h3);
     }
 
     @media (max-width: 767px) {
         h1 {
-            font: var(--font-big);
+            font: var(--font-h2);
         }
     
         p {
-            font: var(--font-regular);
+            font: var(--font-normal);
         }
     }
 }

@@ -4,6 +4,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button, ButtonVariant } from '@/shared/ui/Button/Button';
 import { Header } from '@/widgets/Header';
+import { PageError } from '@/widgets/PageError';
 import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -16,8 +17,6 @@ import { fetchUsers } from '../../model/services/fetchUsers/fetchUsers';
 import { getUsers, usersPageActions } from '../../model/slices/usersPageSlice';
 import { UsersPageHeader } from '../UsersPageHeader/UsersPageHeader';
 import cls from './UsersPage.module.scss';
-import { Result } from '@/shared/ui/Result/Result';
-import { PageError } from '@/widgets/PageError';
 
 interface UsersPageProps {
     className?: string;
@@ -49,7 +48,7 @@ export const UsersPage = memo((props: UsersPageProps) => {
 
     return (
         <div className={classNames(cls.UsersPage, {}, [className])}>
-            <Header mainContentSlot={<UsersPageHeader />} />
+            <Header contentSlot={<UsersPageHeader />} />
             <main className={cls.main}>
                 {error ? (
                     <PageError message={error} />
@@ -57,16 +56,15 @@ export const UsersPage = memo((props: UsersPageProps) => {
                     <UsersList isLoading={initLoading} users={users} />
                 )}
             </main>
-            <div className={classNames(cls.more, { [cls.hidden]: !next })}>
+            <footer className={classNames(cls.more, { [cls.hidden]: !next })}>
                 <Button
-                    className={cls.logoutBtn}
                     variant={ButtonVariant.OUTLINE}
                     onClick={onShowMore}
                     isLoading={isLoading}
                 >
                     Показать еще <Arrow />
                 </Button>
-            </div>
+            </footer>
         </div>
     );
 });
