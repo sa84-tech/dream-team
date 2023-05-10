@@ -41,11 +41,11 @@ export const AuthByEmail = memo((props: AuthByEmailProps) => {
     );
 
     const onLoginClick = useCallback(async () => {
-        const result = await dispatch(loginByEmail({ email, password }));
+        const result = await dispatch(loginByEmail());
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
         }
-    }, [onSuccess, dispatch, password, email]);
+    }, [onSuccess, dispatch]);
 
     return (
         <LoginForm

@@ -35,8 +35,8 @@ export const UsersList = memo((props: UsersListProps) => {
 
     if (!users && !isLoading) {
         <div className={classNames(cls.UsersList, {}, [className])}>
-           <h2>Нет данных</h2>
-        </div>
+            <h2>Нет данных</h2>
+        </div>;
     }
 
     return (

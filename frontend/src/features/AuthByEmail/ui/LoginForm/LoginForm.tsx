@@ -1,9 +1,9 @@
 import { routePath } from '@/app/providers/Router/config/routeConfig';
+import { PasswordIcon } from '@/entities/PasswordIcon/PasswordIcon';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonSize, ButtonVariant } from '@/shared/ui/Button/Button';
 import { Input } from '@/shared/ui/Input/Input';
-import { PasswordIcon } from '@/entities/PasswordIcon/PasswordIcon';
-import { memo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthErrors } from '../../model/types/authSchema';
 import cls from './LoginForm.module.scss';
@@ -35,6 +35,22 @@ export const LoginForm = memo((props: LoginFormProps) => {
 
     const [showPassword, setShowPassword] = useState(false);
 
+    const PasswordIconSlot = useMemo(
+        () => (
+            <PasswordIcon
+                onClick={() => setShowPassword((p) => !p)}
+                isPasswordVisible={showPassword}
+            />
+        ),
+        [setShowPassword, showPassword],
+    );
+
+    const link = useMemo(
+        () => <Link to={routePath.registration} className={cls.link}>
+            Зарегистрироваться
+        </Link>
+    ,[]);
+
     return (
         <div className={classNames(cls.LoginForm, {}, [className])}>
             <h2 className={cls.title}>Авторизация</h2>
@@ -43,23 +59,18 @@ export const LoginForm = memo((props: LoginFormProps) => {
             <Input
                 value={email}
                 onChange={onChangeEmail}
-                placeholder='Электронная почта'
-                type='email'
+                placeholder="Электронная почта"
+                type="email"
                 errors={validationErrors?.email}
                 autofocus
             />
             <Input
                 value={password}
                 onChange={onChangePassword}
-                placeholder='Пароль'
+                placeholder="Пароль"
                 errors={validationErrors?.password}
                 type={showPassword ? 'text' : 'password'}
-                IconSlot={
-                    <PasswordIcon
-                        onClick={() => setShowPassword((prev) => !prev)}
-                        isPasswordVisible={showPassword}
-                    />
-                }
+                IconSlot={PasswordIconSlot}
             />
 
             <Button
@@ -71,9 +82,7 @@ export const LoginForm = memo((props: LoginFormProps) => {
                 Войти
             </Button>
 
-            <Link to={routePath.registration} className={cls.link}>
-                Зарегистрироваться
-            </Link>
+            {link}
         </div>
     );
 });

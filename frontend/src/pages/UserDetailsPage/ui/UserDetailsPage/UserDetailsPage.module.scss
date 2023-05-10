@@ -17,26 +17,3 @@
         text-align: center;
     }
 }
-
-.main {
-    padding: 48px 188px;
-
-}
-
-@media (max-width: 1200px) {
-    .main {
-        padding: 48px 80px;
-    }
-}
-
-@media (max-width: 767px) {
-    .main {
-        padding: 32px;
-    }
-}
-
-@media (max-width: 575px) {
-    .main {
-        padding: 16px;
-    }
-}

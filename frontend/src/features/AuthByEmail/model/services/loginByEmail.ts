@@ -7,21 +7,20 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { authActions } from '../slices/authSlice';
 import { AuthErrors } from '../types/authSchema';
-
-interface LoginByEmailProps {
-    email: string;
-    password: string;
-}
+import { getEmail, getPassword } from '../selectors/authByEmailSelectors';
 
 export const loginByEmail = createAsyncThunk<
     User,
-    LoginByEmailProps,
+    void,
     ThunkConfig<AuthErrors | string>
->('auth/loginByEmail', async (authData, thunkApi) => {
-    const { dispatch, rejectWithValue } = thunkApi;
+>('auth/loginByEmail', async (_, thunkApi) => {
+    const { dispatch, getState, rejectWithValue } = thunkApi;
+
+    const email = getEmail(getState());
+    const password = getPassword(getState());
 
     try {
-        const response = await $api.post<User>('/login/', authData);
+        const response = await $api.post<User>('/login/', {email, password});
 
         if (!response.data) {
             throw new Error();

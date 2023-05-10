@@ -56,15 +56,11 @@ export const UsersPage = memo((props: UsersPageProps) => {
                     <UsersList isLoading={initLoading} users={users} />
                 )}
             </main>
-            <footer className={classNames(cls.more, { [cls.hidden]: !next })}>
-                <Button
-                    variant={ButtonVariant.OUTLINE}
-                    onClick={onShowMore}
-                    isLoading={isLoading}
-                >
+            <div className={classNames(cls.more, { [cls.hidden]: !next })}>
+                <Button variant={ButtonVariant.OUTLINE} onClick={onShowMore} isLoading={isLoading}>
                     Показать еще <Arrow />
                 </Button>
-            </footer>
+            </div>
         </div>
     );
 });

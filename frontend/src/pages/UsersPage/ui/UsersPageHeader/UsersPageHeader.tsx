@@ -1,5 +1,5 @@
-import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { memo } from 'react';
 import cls from './UsersPageHeader.module.scss';
 
 interface UsersPageHeaderProps {
@@ -13,9 +13,8 @@ export const UsersPageHeader = memo((props: UsersPageHeaderProps) => {
         <div className={classNames(cls.UsersPageHeader, {}, [className])}>
             <h1>Наша команда</h1>
             <p>
-                Это опытные специалисты, хорошо разбирающиеся во всех задачах,
-                которые ложатся на их плечи, и умеющие находить выход из любых,
-                даже самых сложных ситуаций.
+                Это опытные специалисты, хорошо разбирающиеся во всех задачах, которые ложатся на их
+                плечи, и умеющие находить выход из любых, даже самых сложных ситуаций.
             </p>
         </div>
     );

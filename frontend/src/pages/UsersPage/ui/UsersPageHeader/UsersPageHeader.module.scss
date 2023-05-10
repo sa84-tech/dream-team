@@ -20,10 +20,21 @@
         h1 {
             font: var(--font-h2);
         }
-    
+
         p {
             font: var(--font-normal);
         }
     }
 }
 
+@media (max-width: 991px) {
+    .UsersPageHeader {
+        padding: 0 32px;
+    }
+}
+
+@media (max-width: 576px) {
+    .UsersPageHeader {
+        padding: 0 16px;
+    }
+}

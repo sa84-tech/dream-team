@@ -2,7 +2,6 @@ import { routePath } from '@/app/providers/Router/config/routeConfig';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Header } from '@/widgets/Header';
-import { PageError } from '@/widgets/PageError';
 import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -44,21 +43,11 @@ export const UserDetailsPage = (props: UserDetailsPageProps) => {
         <div className={classNames(cls.UserDetailsPage, {}, [className])}>
             <Header
                 contentSlot={
-                    <UserDetailsPageHeader
-                        user={user}
-                        isLoading={isLoading}
-                        error={error}
-                    />
+                    <UserDetailsPageHeader user={user} isLoading={isLoading} error={error} />
                 }
                 onBackClick={onBackClick}
             />
-            <main className={cls.main}>
-                {error ? (
-                    <PageError message={error} />
-                ) : (
-                    <UserDetailsContent user={user} isLoading={isLoading} />
-                )}
-            </main>
+            <UserDetailsContent user={user} isLoading={isLoading} error={error} />
             <div className={cls.more}></div>
         </div>
     );
