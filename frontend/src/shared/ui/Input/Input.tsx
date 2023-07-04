@@ -1,5 +1,5 @@
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
-import { InputHTMLAttributes, useEffect, useRef } from 'react';
+import { InputHTMLAttributes, ReactNode, memo, useEffect, useRef } from 'react';
 import cls from './Input.module.scss';
 
 type HTMLInputProps = Omit<
@@ -13,9 +13,10 @@ interface InputProps extends HTMLInputProps {
     onChange?: (value: string) => void;
     autofocus?: boolean;
     errors?: string[];
+    IconSlot?: ReactNode;
 }
 
-export const Input = (props: InputProps) => {
+export const Input = memo((props: InputProps) => {
     const {
         className,
         value,
@@ -24,6 +25,7 @@ export const Input = (props: InputProps) => {
         placeholder,
         autofocus,
         errors = [],
+        IconSlot,
         ...otherProps
     } = props;
 
@@ -41,20 +43,31 @@ export const Input = (props: InputProps) => {
     };
 
     const mods: Mods = {
-        [cls.errorBorder]: hasErrors,
+        [cls.inputErrorBorder]: hasErrors,
     };
 
     return (
         <div className={classNames(cls.Input, {}, [className])}>
-            {placeholder && <div className={cls.placeholder}>{placeholder}</div>}
-            <input
-                type={type}
-                value={value}
-                onChange={onChangeValue}
-                className={classNames(cls.input, mods)}
-                {...otherProps}
-            />
-            {hasErrors && errors.map((error) => <div key={error} className={cls.error}>{error}</div>)}
+            {placeholder && (
+                <div className={cls.placeholder}>{placeholder}</div>
+            )}
+            <div className={cls.inputWrapper}>
+                <input
+                    type={type}
+                    value={value}
+                    onChange={onChangeValue}
+                    className={classNames('', mods)}
+                    {...otherProps}
+                />
+                {IconSlot && <div className={cls.iconWrapper}>{IconSlot}</div>}
+            </div>
+
+            {hasErrors &&
+                errors.map((error) => (
+                    <div key={error} className={cls.errorWrapper}>
+                        {error}
+                    </div>
+                ))}
         </div>
     );
-};
+});

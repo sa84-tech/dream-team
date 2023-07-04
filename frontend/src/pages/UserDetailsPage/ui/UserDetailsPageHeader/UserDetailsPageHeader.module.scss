@@ -1,22 +1,14 @@
 .UserDetailsPageHeader {
     color: white;
     width: 100%;
-
-    .container {
-        padding: 0 188px;
-        display: flex;
-        justify-content: start;
-    }
+    padding: 0 188px;
+    display: flex;
+    justify-content: start;
 
     .card {
         border: none;
         display: flex;
         width: 100%;
-    }
-
-    h1,
-    p {
-        text-align: center;
     }
 
     .info {
@@ -32,35 +24,29 @@
 
     .role {
         margin-top: 16px;
-        font: var(--font-big);
+        font: var(--font-h2);
+    }
+
+    @media (max-width: 1199px) {
+        .name {
+            font: var(--font-h2);
+        }
+        .role {
+            font: var(--font-h3);
+        }
     }
 
     @media (max-width: 991px) {
-        .container {
-            padding: 0 80px;
-        }
         .name {
-            font: var(--font-big);
-            text-align: center;
+            font: var(--font-h2);
         }
 
         .role {
-            font: var(--font-h2);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .container {
-            padding: 0 32px;
+            font: var(--font-h3);
         }
     }
 
     @media (max-width: 576px) {
-        .container {
-            padding: 0;
-            display: block;
-        }
-
         .card {
             flex-direction: column-reverse;
             align-items: center;
@@ -71,14 +57,32 @@
         }
 
         .name {
-            font: var(--font-big);
+            font: var(--font-h2);
             text-align: center;
         }
 
         .role {
             margin: 16px 0;
-            font: var(--font-h2);
+            font: var(--font-h3);
             text-align: center;
         }
+    }
+}
+
+@media (max-width: 991px) {
+    .UserDetailsPageHeader {
+        padding: 0 80px;
+        justify-content: center;
+
+        .card {
+            width: auto;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .UserDetailsPageHeader {
+        padding: 0;
+        display: block;
     }
 }

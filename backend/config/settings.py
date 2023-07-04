@@ -37,6 +37,8 @@ ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS',
 
 # Application definition
 
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,6 +54,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
 ]
 
+RESPONSE_DELAY = env.int('DJANGO_RESPONSE_DELAY', 0)
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -61,14 +65,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    # 'config.middleware.TimeDelayMiddleware',
 ]
+
+if RESPONSE_DELAY:
+    MIDDLEWARE.append('config.middleware.TimeDelayMiddleware')
 
 CORS_ALLOWED_ORIGINS = env.list('DJANGO_CORS_ALLOWED_ORIGINS',
                                 default=[
                                     'http://localhost:5173',
                                     'http://127.0.0.1:5173',
+                                    'http://127.0.0.1:8000',
                                 ])
 
 CORS_ORIGIN_WHITELIST = env.list('DJANGO_CORS_ORIGIN_WHITELIST',

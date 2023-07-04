@@ -1,0 +1,66 @@
+.UserDetailsContent {
+    display: flex;
+    justify-content: space-between;
+    gap: 132px;
+    padding: 48px 188px;
+
+    .content,
+    .contacts {
+        flex: 1;
+    }
+
+    .content {
+        flex: 2;
+        white-space: pre-line;
+    }
+
+    .email,
+    .phone {
+        display: flex;
+        text-decoration: none;
+        color: inherit;
+        vertical-align: center;
+        gap: 8px;
+        font: var(--font-normal);
+    }
+
+    .phone {
+        margin-top: 24px;
+    }
+
+    .noProfile {
+        font: var(--font-h3);
+        color: var(--gray);
+    }
+
+    @media (max-width: 1999px) {
+        .content {
+            flex: 3;
+        }
+    }
+}
+
+@media (max-width: 1199px) {
+    .UserDetailsContent {
+        gap: 32px;
+    }
+}
+
+@media (max-width: 991px) {
+    .UserDetailsContent {
+        flex-direction: column-reverse;
+        padding: 48px 80px;
+    }
+}
+
+@media (max-width: 767px) {
+    .UserDetailsContent {
+        padding: 32px;
+    }
+}
+
+@media (max-width: 575px) {
+    .UserDetailsContent {
+        padding: 16px;
+    }
+}

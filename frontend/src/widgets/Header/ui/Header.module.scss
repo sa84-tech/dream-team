@@ -6,35 +6,30 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    // padding: 0 24px;
-}
 
-.logoutBtn {
-    position: absolute;
-    top: 32px;
-    right: 80px;
-}
-
-.navBtnWrapper {
-    position: absolute;
-    top: 32px;
-    left: 80px;
+    nav {
+        position: absolute;
+        top: 32px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 80px;
+    }
 }
 
 @media (max-width: 991px) {
     .Header {
-        padding: 0 24px
+        nav {
+            padding: 0 32px;
+            top: 16px;
+        }
     }
+}
 
-    .logoutBtn {
-        position: absolute;
-        top: 16px;
-        right: 32px;
-    }
-
-    .navBtnWrapper {
-        position: absolute;
-        top: 16px;
-        left: 32px;
+@media (max-width: 576px) {
+    .Header {
+        nav {
+            padding: 0 16px;
+        }
     }
 }

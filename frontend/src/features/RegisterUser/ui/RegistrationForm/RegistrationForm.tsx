@@ -1,10 +1,11 @@
+import { PasswordIcon } from '@/entities/PasswordIcon/PasswordIcon';
 import { RegistrationErrors } from '@/features/RegisterUser';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonSize, ButtonVariant } from '@/shared/ui/Button/Button';
 import { Input } from '@/shared/ui/Input/Input';
-import { memo } from 'react';
-import cls from './RegistrationForm.module.scss';
+import { memo, useMemo, useState } from 'react';
 import { RegistrationFormSchema } from '../../model/types/registration';
+import cls from './RegistrationForm.module.scss';
 
 interface RegistrationFormProps {
     className?: string;
@@ -31,6 +32,29 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
         onRegister,
     } = props;
 
+    const [showPassword1, setShowPassword1] = useState(false);
+    const [showPassword2, setShowPassword2] = useState(false);
+
+    const PasswordIconSlot1 = useMemo(
+        () => (
+            <PasswordIcon
+                onClick={() => setShowPassword1((p) => !p)}
+                isPasswordVisible={showPassword1}
+            />
+        ),
+        [setShowPassword1, showPassword1],
+    );
+
+    const PasswordIconSlot2 = useMemo(
+        () => (
+            <PasswordIcon
+                onClick={() => setShowPassword2((p) => !p)}
+                isPasswordVisible={showPassword2}
+            />
+        ),
+        [setShowPassword2, showPassword2],
+    );
+
     return (
         <div className={classNames(cls.RegistrationForm, {}, [className])}>
             <h2 className={cls.title}>Регистрация</h2>
@@ -41,6 +65,7 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
                 errors={errors?.name}
                 placeholder="Имя"
                 autofocus
+                type="text"
             />
 
             <Input
@@ -55,19 +80,26 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
                 value={data?.password1}
                 onChange={onChangePassword1}
                 placeholder="Пароль"
-                type="password"
                 errors={errors?.password1}
+                type={showPassword1 ? 'text' : 'password'}
+                IconSlot={PasswordIconSlot1}
             />
 
             <Input
                 value={data?.password2}
                 onChange={onChangePassword2}
                 placeholder="Подтвердите пароль"
-                type="password"
                 errors={errors?.password2}
+                type={showPassword2 ? 'text' : 'password'}
+                IconSlot={PasswordIconSlot2}
             />
 
-            <Button size={ButtonSize.L} variant={ButtonVariant.PRIMARY} onClick={onRegister} disabled={isLoading}>
+            <Button
+                size={ButtonSize.L}
+                variant={ButtonVariant.PRIMARY}
+                onClick={onRegister}
+                disabled={isLoading}
+            >
                 Зарегистрироваться
             </Button>
         </div>

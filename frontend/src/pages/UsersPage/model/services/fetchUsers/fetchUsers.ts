@@ -4,6 +4,7 @@ import { ThunkConfig } from '@/app/providers/StoreProvider/config/stateSchema';
 import { User } from '@/entities/User';
 import { $api } from '@/shared/api/api';
 import { getUsersPageOffset } from '../../selectors/usersPageSelectors';
+import { AxiosError } from 'axios';
 
 interface ApiResponse {
     count: number;
@@ -30,12 +31,12 @@ export const fetchUsers = createAsyncThunk<ApiResponse, FetchUsersProps, ThunkCo
             });
 
             if (!response.data) {
-                throw new Error();
+                throw new Error('Нет данных');
             }
 
             return response.data;
         } catch (e) {
-            return rejectWithValue('error');
+            return rejectWithValue('При загрузке данных произошла ошибка.');
         }
     },
 );

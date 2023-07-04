@@ -23,7 +23,7 @@ export const fetchUserDetails = createAsyncThunk<
                 return response.data;
             } catch (e) {
                 console.log(e);
-                return rejectWithValue('error');
+                return rejectWithValue('При загрзуке данных произошла ошибка.');
             }
         },
     );

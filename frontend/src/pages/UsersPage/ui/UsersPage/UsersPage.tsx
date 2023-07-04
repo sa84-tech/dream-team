@@ -4,9 +4,11 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button, ButtonVariant } from '@/shared/ui/Button/Button';
 import { Header } from '@/widgets/Header';
+import { PageError } from '@/widgets/PageError';
 import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
+    getUsersPageError,
     getUsersPageIsLoading,
     getUsersPageNext,
     getUsersPageOffset,
@@ -29,6 +31,7 @@ export const UsersPage = memo((props: UsersPageProps) => {
     const isLoading = useSelector(getUsersPageIsLoading);
     const offset = useSelector(getUsersPageOffset);
     const next = useSelector(getUsersPageNext);
+    const error = useSelector(getUsersPageError);
 
     const initLoading = isLoading && offset === 0;
 
@@ -45,17 +48,16 @@ export const UsersPage = memo((props: UsersPageProps) => {
 
     return (
         <div className={classNames(cls.UsersPage, {}, [className])}>
-            <Header mainContentSlot={<UsersPageHeader />} />
+            <Header contentSlot={<UsersPageHeader />} />
             <main className={cls.main}>
-                <UsersList isLoading={initLoading} users={users} />
+                {error ? (
+                    <PageError message={error} />
+                ) : (
+                    <UsersList isLoading={initLoading} users={users} />
+                )}
             </main>
             <div className={classNames(cls.more, { [cls.hidden]: !next })}>
-                <Button
-                    className={cls.logoutBtn}
-                    variant={ButtonVariant.OUTLINE}
-                    onClick={onShowMore}
-                    isLoading={isLoading}
-                >
+                <Button variant={ButtonVariant.OUTLINE} onClick={onShowMore} isLoading={isLoading}>
                     Показать еще <Arrow />
                 </Button>
             </div>
